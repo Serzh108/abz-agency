@@ -31,7 +31,10 @@ type A =
 export const getData = async (endpoint: string) => {
   try {
     // const { data }: AxiosResponse<A> = await axiosPublic.get(endpoint);
-    const { data }: AxiosResponse<A> = await axiosPublic.get('/token');
+    // const { data }: AxiosResponse<A> = await axiosPublic.get('/token');
+    const data1: AxiosResponse<A> = await axiosPublic.get('/token');
+    console.log(' --- data1 - > ', data1)
+    const data = '/token';
     return data;
   } catch (error) {
     console.log(error);
