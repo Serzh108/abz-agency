@@ -1,0 +1,24 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
+  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "rules": {
+    "react/prop-types": ["off"],
+    "@typescript-eslint/ban-ts-comment": "warn",
+    // "sonarjs/cognitive-complexity": ["error", 5],
+    // "max-lines-per-function": ["error", 40]
+      "max-lines-per-function": ["error", 1080]
+  }
+}
