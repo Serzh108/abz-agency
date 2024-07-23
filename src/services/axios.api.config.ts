@@ -2,16 +2,17 @@ import axios from 'axios';
 // import { BASE_URL } from '../constants';
 // import { refresh } from './auth';
 
-// const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL_API;
-const BASE_URL = ' https://frontend-test-assignment-api.abz.agency/api/v1';
-
+// const BASE_URL = process.env.BASE_URL_API;
+const BASE_URL = 'https://frontend-test-assignment-api.abz.agency/api/v1';
+console.log('BASE_URL: ', BASE_URL);
 
 export const axiosPublic = axios.create({
   baseURL: BASE_URL,
   headers: {
     'Content-Type': 'application/json',
   },
-  withCredentials: true,
+  // withCredentials: true,
+  withCredentials: false,
 });
 
 export const axiosPrivate = axios.create({

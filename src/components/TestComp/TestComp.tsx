@@ -1,18 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { getData } from '../../services/getData';
+import { IToken } from '../../types';
 
 function TestComp() {
   const [token, setToken] = useState<string>('waiting...');
 
   useEffect(() => {
     const getToken = async () => {
-      const token = await getData('token');
+      const token = await getData('/token');
       console.log(' -- token = ', token);
-      return token;
+      token?.success && setToken(token.token);
+      // return token;
     };
 
-    const token = getToken();
-    // setToken(token);
+    // const token: <A> = getToken();
+    getToken();
+    // token?.success && setToken(token.token);
   }, []);
 
   return (

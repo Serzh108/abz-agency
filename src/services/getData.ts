@@ -13,8 +13,14 @@ import { axiosPrivate, axiosPublic } from './axios.api.config';
 //   IFAQData,
 // } from '@/types';
 
+interface IToken {
+  success: boolean;
+  token: string;
+}
+
 type A =
-  any;
+  | IToken
+  | undefined;
 // | DiscountsPageProps
 // | IPriceData
 // | ITeachersPageProps
@@ -26,19 +32,18 @@ type A =
 // | IQuiz
 // | IFAQData;
 
+
 // export const getData = async <A>(endpoint: string): Promise<A> => {
 
-export const getData = async (endpoint: string) => {
+export const getData = async (endpoint: string): Promise<A> => {
   try {
-    // const { data }: AxiosResponse<A> = await axiosPublic.get(endpoint);
+    const { data }: AxiosResponse<A> = await axiosPublic.get(endpoint);
     // const { data }: AxiosResponse<A> = await axiosPublic.get('/token');
-    const data1: AxiosResponse<A> = await axiosPublic.get('/token');
-    console.log(' --- data1 - > ', data1)
-    const data = '/token';
+    console.log(' --- data - > ', data);
     return data;
   } catch (error) {
     console.log(error);
-    return error;
+    // return error;
   }
 };
 
