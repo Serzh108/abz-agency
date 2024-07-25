@@ -1,0 +1,16 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+  background-color: rgba(255, 255, 255, 1);
+}
+
+.buttonWrapper {
+  margin-right: 60px;
+
+  & button:first-of-type {
+    margin-right: 10px;
+  }
+}

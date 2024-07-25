@@ -1,0 +1,77 @@
+// @import "src/styles/functions";
+// @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700;900&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&display=swap');
+
+:root {
+  // --- fonts ---
+  // --ff-title: 'Roboto Condensed', sans-serif;
+  // --ff-body: 'Roboto Mono', sans-serif;
+  // --- My ---
+  --font-family-body: 'Nunito', sans-serif;
+
+  // title
+  --fw-title: 700;
+  --fw-body: 500;
+  --fw-label: 400;
+
+  --fs-title-xl: 180px;
+  --lh-title-xl: 0.8;
+  --font-title-xl: var(--fs-title-xl) / var(--lh-title-xl) var(--ff-title);
+
+  --fs-title-l: 120px;
+  --lh-title-l: 1;
+  --font-title-l: var(--fs-title-l) / var(--lh-title-l) var(--ff-title);
+
+  --fs-title-m: 34px;
+  --lh-title-m: 1;
+  --font-title-m: var(--fs-title-m) / var(--lh-title-m) var(--ff-title);
+
+  // body
+  --fs-body-m: 24px;
+  --lh-body-m: 36px;
+  --font-body-m: var(--fs-body-m) / var(--lh-body-m) var(--ff-body);
+
+  --fs-body-sm: 16px;
+  --lh-body-sm: 21px;
+  --font-body-sm: var(--fs-body-sm) / var(--lh-body-sm) var(--ff-body);
+
+  // --- colors ---
+  --clr-primary: #1a1e19;
+  --clr-accent: #eafd65;
+  --clr-additional-black: #000000;
+  --clr-additional-white: #ffffff;
+  // --- My ---
+  --color-text-primary: rgba(0, 0, 0, 0.87);
+  --color-bg-main: rgba(248, 248, 248, 1);
+
+  // --- transitions ---
+  --comeback-transition: 0.2s;
+
+  // --- z-index ---
+  --z-i-modal: 5;
+  --z-i-header: 4;
+  --z-i-marquee: 3;
+  --z-i-banner: 2;
+  --z-i-tiles: -1;
+}
+
+@media (max-width: 1440px) {
+  :root {
+    // --fs-title-xl: #{getFontClamp(74, 135, 425, 1440)};
+    // --fs-title-l: #{getFontClamp(60, 90, 425, 1440)};
+    // --fs-title-m: #{getFontClamp(18, 26, 425, 1440)};
+    --fs-body-m: 16px;
+    --fs-body-sm: 12px;
+    --lh-body-m: 26px;
+  }
+}
+
+@media (max-width: 800px) {
+  :root {
+    --lh-title-xl: 0.9;
+    --lh-title-l: 0.9;
+    --lh-body-m: 28px;
+    --fs-body-sm: 16px;
+  }
+}

@@ -1,45 +1,34 @@
 import { AxiosResponse } from 'axios';
 import { axiosPrivate, axiosPublic } from './axios.api.config';
-// import {
-//   DiscountsPageProps,
-//   IPriceData,
-//   ITeachersPageProps,
-//   IFAQPageProps,
-//   IArticlesPageProps,
-//   IReviewsPageProps,
-//   IQuizzesProps,
-//   IQuiz,
-//   IReviewData,
-//   IFAQData,
-// } from '@/types';
+import { IToken, IUsers } from '../types';
 
-interface IToken {
-  success: boolean;
-  token: string;
-}
-
-type A =
+type T =
   | IToken
   | undefined;
-// | DiscountsPageProps
-// | IPriceData
-// | ITeachersPageProps
-// | IFAQPageProps
-// | IArticlesPageProps
-// | IReviewsPageProps
-// | IReviewData
-// | IQuizzesProps
-// | IQuiz
-// | IFAQData;
 
+// export const getToken = async <A>(endpoint: string): Promise<A> => {
 
-// export const getData = async <A>(endpoint: string): Promise<A> => {
-
-export const getData = async (endpoint: string): Promise<A> => {
+export const getToken = async (endpoint: string): Promise<T> => {
   try {
-    const { data }: AxiosResponse<A> = await axiosPublic.get(endpoint);
+    const { data }: AxiosResponse<T> = await axiosPublic.get(endpoint);
     // const { data }: AxiosResponse<A> = await axiosPublic.get('/token');
-    console.log(' --- data - > ', data);
+    // console.log(' --- data - > ', data);
+    return data;
+  } catch (error) {
+    console.log(error);
+    // return error;
+  }
+};
+
+type U =
+  | IUsers
+  | undefined;
+
+export const getUsers = async (endpoint: string): Promise<U> => {
+  try {
+    // const { users }: AxiosResponse<U> = await axiosPrivate.get(endpoint);
+    const { data }: AxiosResponse<U> = await axiosPublic.get(endpoint);
+    // console.log(' --- data - > ', data);
     return data;
   } catch (error) {
     console.log(error);
@@ -77,7 +66,7 @@ export const getData = async (endpoint: string): Promise<A> => {
 
 // export const getPageData = async <A>(endpoint: string) => {
 //   try {
-//     const result = await getData(endpoint);
+//     const result = await getToken(endpoint);
 //     return result as A;
 //   } catch (error) {
 //     return { message: error };

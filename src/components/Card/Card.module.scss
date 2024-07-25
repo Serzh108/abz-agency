@@ -1,0 +1,28 @@
+.item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 282px;
+  height: 254px;
+  padding: 20px;
+  text-align: center;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 1);
+
+  & img {
+    margin-bottom: 20px;
+    border-radius: 50%;
+  }
+
+  & p {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 26px;
+    color: rgba(0, 0, 0, 0.87);
+
+    &:first-of-type {
+      margin-bottom: 20px;
+    }
+  }
+}
