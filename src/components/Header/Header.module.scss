@@ -6,15 +6,47 @@
   height: 60px;
   background-color: rgba(255, 255, 255, 1);
 
-  & img {
-    margin-left: 60px;
-  }
+  // & img {
+  //   margin-left: 60px;
+  // }
 }
 
 .buttonWrapper {
-  margin-right: 60px;
+  margin-right: 0px;
 
   & button:first-of-type {
     margin-right: 10px;
+  }
+}
+
+img {
+  margin-left: 0px;
+}
+
+// ?
+@media (max-width: 2560px) {
+  img {
+    margin-left: 60px;
+  }
+  .buttonWrapper {
+    margin-right: 60px;
+  }
+}
+
+@media (max-width: 1024px) {
+  img {
+    margin-left: 32px;
+  }
+  .buttonWrapper {
+    margin-right: 32px;
+  }
+}
+
+@media (max-width: 768px) {
+  img {
+    margin-left: 16px;
+  }
+  .buttonWrapper {
+    margin-right: 16px;
   }
 }

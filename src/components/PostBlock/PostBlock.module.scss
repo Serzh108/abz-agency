@@ -5,10 +5,10 @@
   padding: 140px 60px 100px;
 
   & h2 {
-    font-size: 40px;
-    font-weight: 400;
-    line-height: 40px;
-    color: rgba(0, 0, 0, 0.87);
+    // font-size: 40px;
+    // font-weight: 400;
+    // line-height: 40px;
+    // color: var(--color-text-primary);
     margin-bottom: 50px;
   }
   & form {
@@ -53,7 +53,7 @@
         font-size: 16px;
         font-weight: 400;
         line-height: 26px;
-        color: rgba(0, 0, 0, 0.87);
+        color: var(--color-text-primary);
       }
       div {
         display: flex;
@@ -64,7 +64,7 @@
           font-size: 16px;
           font-weight: 400;
           line-height: 26px;
-          color: rgba(0, 0, 0, 0.87);
+          color: var(--color-text-primary);
         }
       }
     }
@@ -99,14 +99,14 @@
 
   &::before {
     content: 'Upload';
-    color: rgba(0, 0, 0, 0.87);
+    color: var(--color-text-primary);
     padding: 14px 15px;
     position: absolute;
     top: -1px;
     left: 0;
     width: 83px;
     height: 54px;
-    border: 1px solid rgba(0, 0, 0, 0.87);
+    border: 1px solid var(--color-text-primary);
     border-bottom-left-radius: 4px;
     border-top-left-radius: 4px;
   }

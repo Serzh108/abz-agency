@@ -24,7 +24,6 @@ const PostBlock: React.FC = () => {
       email: '',
       phone: '',
       position_id: '1',
-      // position_id: 0,
       photo: '',
     },
   });
@@ -41,28 +40,16 @@ const PostBlock: React.FC = () => {
     <section className={styles.wrapper}>
       <h2>Working with POST request</h2>
       <form onSubmit={handleSubmit(onSubmitForm)}>
-        {/* <div>
-          <label> */}
-        {/* Name: */}
         <input {...register('name')} placeholder="Name" />
         {errors.name && <span>{errors.name.message}</span>}
-        {/* </label>
-        </div> */}
-        {/* <div> */}
-        {/* <label> */}
-        {/* Email: */}
+
         <input {...register('email')} placeholder="Email" />
         {errors.email && <span>{errors.email.message}</span>}
-        {/* </label> */}
-        {/* </div> */}
-        {/* <div>
-          <label> */}
-        {/* Phone: */}
+
         <input {...register('phone')} placeholder="Phone" />
         <span>+38 (XXX) XXX - XX - XX</span>
         {errors.phone && <span>{errors.phone.message}</span>}
-        {/* </label>
-        </div> */}
+
         <div>
           {/* --- - --- */}
           <p>Select your position:</p>

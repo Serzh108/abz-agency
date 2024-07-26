@@ -11,10 +11,12 @@ body {
   }
 }
 
-h1,
-h2,
-h3 {
-  // text-transform: uppercase;
+h2 {
+  font-family: var(--font-family-body);
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 40px;
+  color: var(--color-text-primary);
 }
 
 a {
