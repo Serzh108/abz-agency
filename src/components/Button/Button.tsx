@@ -5,6 +5,7 @@ interface IButton {
   onClickHandler?: () => void;
   type?: 'button' | 'submit';
   customStyles?: CSSProperties;
+  disabled?: boolean;
 }
 
 const Button = ({
@@ -12,6 +13,7 @@ const Button = ({
   onClickHandler,
   type = 'button',
   customStyles,
+  disabled = false,
 }: IButton) => {
   return (
     <button
@@ -19,6 +21,7 @@ const Button = ({
       style={customStyles}
       type={type}
       onClick={onClickHandler}
+      disabled={disabled}
     >
       {title}
     </button>

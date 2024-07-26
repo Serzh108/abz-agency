@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './Header.module.scss';
 import Button from '../Button/Button';
+import logo from '../../assets/images/logo.svg';
 
 const Header: React.FC = () => {
   const onUsersClick = () => {
@@ -15,8 +16,7 @@ const Header: React.FC = () => {
 
   return (
     <header className={styles.header}>
-      <h1>TESTTASK</h1>
-      {/* <Logo /> */}
+      <img src={logo} alt="logo" />
       <div className={styles.buttonWrapper}>
         <Button title={'Users'} onClickHandler={onUsersClick} />
         <Button title={'Sign up'} onClickHandler={onSignUpClick} />

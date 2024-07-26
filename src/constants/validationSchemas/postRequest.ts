@@ -3,7 +3,7 @@ import * as yup from 'yup';
 export const postRequestSchema = yup.object({
   name: yup
     .string()
-    .required('Name is required')
+    .required('name is required')
     .min(8, 'need more than 8 characters')
     .max(32, 'need less than 32 characters'),
   // .min(8, REGEXP.password.mes.mismatchLessSymbols)
@@ -15,9 +15,10 @@ export const postRequestSchema = yup.object({
     .string()
     .required('phone is required'),
   position_id: yup
-    .number()
-    .required('position_id is required'),
-  photo: yup
+    // .number()
     .string()
-    .required('photo is required'),
+    .required('position is required'),
+  photo: yup
+    .string(),
+  // .required('photo is required'),
 });

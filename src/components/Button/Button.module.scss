@@ -11,4 +11,10 @@
   background-color: rgba(244, 224, 65, 1);
   outline: none;
   cursor: pointer;
+
+  &:disabled {
+    color: rgba(255, 255, 255, 0.87);
+    background-color: rgba(180, 180, 180, 1);
+    cursor: not-allowed;
+  }
 }

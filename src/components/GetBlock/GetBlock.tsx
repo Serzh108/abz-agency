@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import styles from './GetBlock.module.scss';
 // import { getToken } from '../../services/getToken';
-import { IToken, IUser } from '../../types';
+import {
+  // IToken,
+  IUser,
+} from '../../types';
 import { getToken, getUsers } from '../../services/getData';
 import Card from '../Card/Card';
 import Button from '../Button/Button';

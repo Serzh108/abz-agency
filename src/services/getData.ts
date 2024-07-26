@@ -1,5 +1,8 @@
 import { AxiosResponse } from 'axios';
-import { axiosPrivate, axiosPublic } from './axios.api.config';
+import {
+  // axiosPrivate,
+  axiosPublic
+} from './axios.api.config';
 import { IToken, IUsers } from '../types';
 
 type T =

@@ -4,6 +4,12 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { postRequestSchema } from '../../constants/validationSchemas/postRequest';
 import { postRequestForm } from '../../constants';
+import Button from '../Button/Button';
+// import Radio from '@mui/material/Radio';
+// import RadioGroup from '@mui/material/RadioGroup';
+// import FormControlLabel from '@mui/material/FormControlLabel';
+// import FormControl from '@mui/material/FormControl';
+// import FormLabel from '@mui/material/FormLabel';
 
 const PostBlock: React.FC = () => {
   const {
@@ -17,10 +23,14 @@ const PostBlock: React.FC = () => {
       name: '',
       email: '',
       phone: '',
-      position_id: 0,
+      position_id: '1',
+      // position_id: 0,
       photo: '',
     },
   });
+
+  // --- TEMP!! ---
+  const tempARR = ['Frontend developer', 'Backend developer', 'Designer', 'QA'];
 
   const onSubmitForm: SubmitHandler<postRequestForm> = (data) => {
     console.log('Form submitted:', data);
@@ -31,46 +41,71 @@ const PostBlock: React.FC = () => {
     <section className={styles.wrapper}>
       <h2>Working with POST request</h2>
       <form onSubmit={handleSubmit(onSubmitForm)}>
+        {/* <div>
+          <label> */}
+        {/* Name: */}
+        <input {...register('name')} placeholder="Name" />
+        {errors.name && <span>{errors.name.message}</span>}
+        {/* </label>
+        </div> */}
+        {/* <div> */}
+        {/* <label> */}
+        {/* Email: */}
+        <input {...register('email')} placeholder="Email" />
+        {errors.email && <span>{errors.email.message}</span>}
+        {/* </label> */}
+        {/* </div> */}
+        {/* <div>
+          <label> */}
+        {/* Phone: */}
+        <input {...register('phone')} placeholder="Phone" />
+        <span>+38 (XXX) XXX - XX - XX</span>
+        {errors.phone && <span>{errors.phone.message}</span>}
+        {/* </label>
+        </div> */}
         <div>
-          <label>
-            Name:
-            <input {...register('name')} />
-            {errors.name && <span>{errors.name.message}</span>}
-          </label>
+          {/* --- - --- */}
+          <p>Select your position:</p>
+          {tempARR &&
+            tempARR.length > 0 &&
+            tempARR.map((item, index) => (
+              <div key={item}>
+                <input
+                  type="radio"
+                  {...register('position_id')}
+                  value={index + 1}
+                />
+                <label>{item}</label>
+              </div>
+            ))}
+          {/* <div>
+            <input type="radio" {...register('position_id')} value="1" />
+            <label>Frontend developer</label>
+          </div>
+          <div>
+            <input type="radio" {...register('position_id')} value="2" />
+            <label> Backend developer</label>
+          </div>
+          <div>
+            <input type="radio" {...register('position_id')} value="3" />
+            <label>Designer</label>
+          </div>
+          <div>
+            <input type="radio" {...register('position_id')} value="4" />
+            <label>QA</label>
+          </div> */}
+          {errors.position_id && <span>{errors.position_id.message}</span>}
         </div>
-        <div>
-          <label>
-            Email:
-            <input {...register('email')} />
-            {errors.email && <span>{errors.email.message}</span>}
-          </label>
-        </div>
-        <div>
-          <label>
-            Phone:
-            <input {...register('phone')} />
-            {errors.phone && <span>{errors.phone.message}</span>}
-          </label>
-        </div>
-        <div>
-          <label>
-            Position:
-            <select {...register('position_id')}>
-              <option value={1}>Choose position 1</option>
-              <option value={2}>Choose position 2</option>
-              <option value={3}>Choose position 3</option>
-              {/* Add options here */}
-            </select>
-            {errors.position_id && <span>{errors.position_id.message}</span>}
-          </label>
-        </div>
-        <label>
-          Photo:
-          <input type="file" {...register('photo')} />
-          {errors.photo && <span>{errors.photo.message}</span>}
+
+        {/* <input type="file" {...register('photo')} />
+        {errors.photo && <span>{errors.photo.message}</span>} */}
+        {/* ---- - ---- */}
+        <input type="file" id="file" className={styles.fileInput} />
+        <label htmlFor="file" className={styles.fileLabel}>
+          Upload your photo
         </label>
 
-        <button title="Sign up" type="submit" />
+        <Button title="Sign up" type="submit" disabled={!true} />
       </form>
     </section>
   );
