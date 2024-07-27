@@ -1,20 +1,23 @@
+@import '../../styles/mixins.scss';
+
 .button {
   width: 100px;
   height: 34px;
   padding: 4px 0;
-  font-size: 16px;
-  font-weight: 400;
-  color: var(--color-text-primary);
-  line-height: 26px;
+  // font-size: 16px;
+  // font-weight: 400;
+  // color: var(--color-text-primary);
+  // line-height: 26px;
+  @include generalText;
   border-radius: 80px;
   border: none;
-  background-color: rgba(244, 224, 65, 1);
+  background-color: var(--color-bg-button);
   outline: none;
   cursor: pointer;
 
   &:disabled {
-    color: rgba(255, 255, 255, 0.87);
-    background-color: rgba(180, 180, 180, 1);
+    color: var(--color-bisabled);
+    background-color: var(--color-bg-bisabled);
     cursor: not-allowed;
   }
 }

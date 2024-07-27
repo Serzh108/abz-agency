@@ -1,14 +1,21 @@
+.wrapper {
+  width: 100%;
+  background-color: var(--color-white);
+}
+
 .header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  max-width: 1170px;
+  margin: 0 auto;
   height: 60px;
-  background-color: rgba(255, 255, 255, 1);
+  // background-color: var(--color-white);
 
-  // & img {
-  //   margin-left: 60px;
-  // }
+  & img {
+    margin-left: 0px;
+  }
 }
 
 .buttonWrapper {
@@ -19,32 +26,33 @@
   }
 }
 
-img {
-  margin-left: 0px;
-}
-
-// ?
-@media (max-width: 2560px) {
-  img {
-    margin-left: 60px;
+@media (max-width: 2559px) {
+  .header {
+    img {
+      margin-left: 60px;
+    }
   }
   .buttonWrapper {
     margin-right: 60px;
   }
 }
 
-@media (max-width: 1024px) {
-  img {
-    margin-left: 32px;
+@media (max-width: 1023px) {
+  .header {
+    img {
+      margin-left: 32px;
+    }
   }
   .buttonWrapper {
     margin-right: 32px;
   }
 }
 
-@media (max-width: 768px) {
-  img {
-    margin-left: 16px;
+@media (max-width: 767px) {
+  .header {
+    img {
+      margin-left: 16px;
+    }
   }
   .buttonWrapper {
     margin-right: 16px;

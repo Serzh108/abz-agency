@@ -1,14 +1,15 @@
+@import '../../styles/mixins.scss';
 .item {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 282px;
+  width: 370px;
   height: 254px;
   padding: 20px;
   text-align: center;
   border-radius: 10px;
-  background-color: rgba(255, 255, 255, 1);
+  background-color: var(--color-white);
 
   & img {
     margin-bottom: 20px;
@@ -16,13 +17,40 @@
   }
 
   & p {
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 26px;
-    color: var(--color-text-primary);
+    width: 100%;
+    // font-weight: 400;
+    // font-size: 16px;
+    // line-height: 26px;
+    // color: var(--color-text-primary);
+    @include generalText;
 
     &:first-of-type {
       margin-bottom: 20px;
     }
+
+    &.ellipsis {
+      width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}
+
+@media (max-width: 2559px) {
+  .item {
+    width: 282px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .item {
+    width: 344px;
+  }
+}
+
+@media (max-width: 767px) {
+  .item {
+    width: 328px;
   }
 }

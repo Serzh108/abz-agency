@@ -6,9 +6,10 @@ const Card = ({ user }: { user: IUser }) => {
   return (
     <li id={user.id} className={styles.item}>
       <img src={user.photo} alt={`Photo ${user.name}`} />
-      <p>{user.name}</p>
-      <p>{user.position}</p>
-      <p>{user.email}</p>
+      <p className={styles.ellipsis}>{user.name}</p>
+      <p className={styles.ellipsis}>{user.position}</p>
+      <p className={styles.ellipsis}>{user.email}</p>
+      {/* <p>{user.email}</p> */}
       <p>{user.phone}</p>
     </li>
   );

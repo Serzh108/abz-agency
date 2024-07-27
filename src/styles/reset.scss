@@ -4,8 +4,8 @@
   box-sizing: border-box;
 }
 
-ul[class],
-ol[class] {
+ul,
+ol {
   padding: 0;
 }
 
@@ -15,8 +15,8 @@ h2,
 h3,
 h4,
 p,
-ul[class],
-ol[class],
+ul,
+ol,
 li,
 figure,
 figcaption,
@@ -34,12 +34,12 @@ html {
 body {
   scroll-behavior: smooth;
   text-rendering: optimizeSpeed;
-  line-height: 1.5;
+  // line-height: 1.5;
   background-color: var(--color-bg-main);
 }
 
-ul[class],
-ol[class] {
+ul,
+ol {
   list-style: none;
 }
 

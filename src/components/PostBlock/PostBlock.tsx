@@ -92,7 +92,7 @@ const PostBlock: React.FC = () => {
           Upload your photo
         </label>
 
-        <Button title="Sign up" type="submit" disabled={!true} />
+        <Button title="Sign up" type="submit" disabled={true} />
       </form>
     </section>
   );

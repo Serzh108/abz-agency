@@ -37,13 +37,15 @@
   --font-body-sm: var(--fs-body-sm) / var(--lh-body-sm) var(--ff-body);
 
   // --- colors ---
-  --clr-primary: #1a1e19;
-  --clr-accent: #eafd65;
-  --clr-additional-black: #000000;
-  --clr-additional-white: #ffffff;
   // --- My ---
   --color-text-primary: rgba(0, 0, 0, 0.87);
+  --color-text-second: rgba(126, 126, 126, 1);
   --color-bg-main: rgba(248, 248, 248, 1);
+  --color-white: rgba(255, 255, 255, 1);
+  --color-bg-button: rgba(244, 224, 65, 1);
+  --color-bg-bisabled: rgba(180, 180, 180, 1);
+  --color-bisabled: rgba(255, 255, 255, 0.87);
+  --color-mask: rgba(0, 0, 0, 0.5);
 
   // --- transitions ---
   --comeback-transition: 0.2s;

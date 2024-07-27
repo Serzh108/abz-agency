@@ -15,13 +15,15 @@ const Header: React.FC = () => {
   };
 
   return (
-    <header className={styles.header}>
-      <img src={logo} alt="logo" />
-      <div className={styles.buttonWrapper}>
-        <Button title={'Users'} onClickHandler={onUsersClick} />
-        <Button title={'Sign up'} onClickHandler={onSignUpClick} />
-      </div>
-    </header>
+    <div className={styles.wrapper}>
+      <header className={styles.header}>
+        <img src={logo} alt="logo" />
+        <div className={styles.buttonWrapper}>
+          <Button title={'Users'} onClickHandler={onUsersClick} />
+          <Button title={'Sign up'} onClickHandler={onSignUpClick} />
+        </div>
+      </header>
+    </div>
   );
 };
 

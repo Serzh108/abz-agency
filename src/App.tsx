@@ -8,12 +8,14 @@ import PostBlock from './components/PostBlock/PostBlock';
 
 function App() {
   return (
-    <Main>
+    <>
       <Header />
-      <Banner />
-      <GetBlock />
-      <PostBlock />
-    </Main>
+      <Main>
+        <Banner />
+        <GetBlock />
+        <PostBlock />
+      </Main>
+    </>
   );
 }
 

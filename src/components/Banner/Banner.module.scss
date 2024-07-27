@@ -1,3 +1,5 @@
+@import '../../styles/mixins.scss';
+
 .wrapper {
   display: flex;
   justify-content: center;
@@ -7,7 +9,7 @@
   height: 650px;
   background-size: cover;
   background-position: center;
-  color: rgba(255, 255, 255, 1);
+  color: var(--color-white);
   background-image: url('../../assets/images/banner.jfif');
 
   &::before {
@@ -17,7 +19,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: var(--color-mask);
     z-index: 1;
   }
 
@@ -28,15 +30,30 @@
 
     & h2 {
       margin-bottom: 20px;
-      // font-size: 40px;
-      // line-height: 40px;
-      color: rgba(255, 255, 255, 1);
+      color: var(--color-white);
     }
 
     & p {
       margin-bottom: 32px;
-      font-size: 16px;
-      line-height: 26px;
+      // font-size: 16px;
+      // line-height: 26px;
+      @include generalText($textColor: var(--color-white));
+    }
+  }
+}
+
+@media (max-width: 1023px) {
+  .wrapper {
+    height: 500px;
+  }
+}
+
+@media (max-width: 767px) {
+  .wrapper {
+    height: 500px;
+
+    div {
+      width: 328px;
     }
   }
 }
