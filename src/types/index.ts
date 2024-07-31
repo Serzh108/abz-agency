@@ -32,3 +32,13 @@ export interface IUsers {
   "links": ILinks;
   "users": IUser[];
 }
+
+export interface IPosinion {
+  "id": number;
+  "name": string;
+}
+
+export interface IPosinions {
+  "success": boolean;
+  "positions": IPosinion[];
+}

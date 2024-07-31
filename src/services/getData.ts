@@ -3,7 +3,7 @@ import {
   // axiosPrivate,
   axiosPublic
 } from './axios.api.config';
-import { IToken, IUsers } from '../types';
+import { IPosinions, IToken, IUsers } from '../types';
 
 type T =
   | IToken
@@ -31,7 +31,23 @@ export const getUsers = async (endpoint: string): Promise<U> => {
   try {
     // const { users }: AxiosResponse<U> = await axiosPrivate.get(endpoint);
     const { data }: AxiosResponse<U> = await axiosPublic.get(endpoint);
-    // console.log(' --- data - > ', data);
+    console.log(' --- users data - > ', data);
+    return data;
+  } catch (error) {
+    console.log(error);
+    // return error;
+  }
+};
+
+type P =
+  | IPosinions
+  | undefined;
+
+export const getPositions = async (endpoint: string): Promise<P> => {
+  try {
+    // const { users }: AxiosResponse<U> = await axiosPrivate.get(endpoint);
+    const { data }: AxiosResponse<P> = await axiosPublic.get(endpoint);
+    console.log(' --- positions data - > ', data);
     return data;
   } catch (error) {
     console.log(error);

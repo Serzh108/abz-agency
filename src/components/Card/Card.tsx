@@ -9,8 +9,9 @@ const Card = ({ user }: { user: IUser }) => {
       <p className={styles.ellipsis}>{user.name}</p>
       <p className={styles.ellipsis}>{user.position}</p>
       <p className={styles.ellipsis}>{user.email}</p>
-      {/* <p>{user.email}</p> */}
+      {/* <p>{user.registration_timestamp}</p> */}
       <p>{user.phone}</p>
+      {/* <p>{user.id}</p> */}
     </li>
   );
 };

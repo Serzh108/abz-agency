@@ -4,8 +4,7 @@ export type postRequestForm = {
   name: string;
   email: string;
   phone: string;
-  position_id: string;
-  // position_id: number;
-  photo?: string;
-  // photo: File;
+  position_id: number;
+  photo: File | undefined;
+  // photo: FileList | undefined;
 };

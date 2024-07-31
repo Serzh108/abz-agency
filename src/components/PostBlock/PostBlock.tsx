@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './PostBlock.module.scss';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { postRequestSchema } from '../../constants/validationSchemas/postRequest';
 import { postRequestForm } from '../../constants';
 import Button from '../Button/Button';
+import { getPositions } from '../../services/getData';
+import { IPosinion } from '../../types';
 // import Radio from '@mui/material/Radio';
 // import RadioGroup from '@mui/material/RadioGroup';
 // import FormControlLabel from '@mui/material/FormControlLabel';
@@ -23,13 +25,21 @@ const PostBlock: React.FC = () => {
       name: '',
       email: '',
       phone: '',
-      position_id: '1',
-      photo: '',
+      position_id: 1,
+      photo: undefined,
     },
   });
 
-  // --- TEMP!! ---
-  const tempARR = ['Frontend developer', 'Backend developer', 'Designer', 'QA'];
+  const [positions, setPositions] = useState<IPosinion[]>([]);
+  useEffect(() => {
+    const receivePositions = async () => {
+      const endpoint = `/positions`;
+      const positions = await getPositions(endpoint);
+      // console.log(' -- positions -> ', positions);
+      positions?.success && setPositions(positions.positions);
+    };
+    receivePositions();
+  }, []);
 
   const onSubmitForm: SubmitHandler<postRequestForm> = (data) => {
     console.log('Form submitted:', data);
@@ -40,59 +50,60 @@ const PostBlock: React.FC = () => {
     <section className={styles.wrapper}>
       <h2>Working with POST request</h2>
       <form onSubmit={handleSubmit(onSubmitForm)}>
-        <input {...register('name')} placeholder="Name" />
-        {errors.name && <span>{errors.name.message}</span>}
-
-        <input {...register('email')} placeholder="Email" />
-        {errors.email && <span>{errors.email.message}</span>}
-
-        <input {...register('phone')} placeholder="Phone" />
-        <span>+38 (XXX) XXX - XX - XX</span>
-        {errors.phone && <span>{errors.phone.message}</span>}
+        <div>
+          <input {...register('name')} placeholder="Name" />
+          {errors.name && (
+            <span className={styles.errorMessage}>{errors.name.message}</span>
+          )}
+        </div>
+        <div>
+          <input {...register('email')} placeholder="Email" />
+          {errors.email && (
+            <span className={styles.errorMessage}>{errors.email.message}</span>
+          )}
+        </div>
+        <div>
+          <input {...register('phone')} placeholder="Phone" />
+          {errors.phone ? (
+            <span className={styles.errorMessage}>{errors.phone.message}</span>
+          ) : (
+            <span>+38 (XXX) XXX - XX - XX</span>
+          )}
+        </div>
 
         <div>
           {/* --- - --- */}
           <p>Select your position:</p>
-          {tempARR &&
-            tempARR.length > 0 &&
-            tempARR.map((item, index) => (
-              <div key={item}>
+          {positions &&
+            positions.length > 0 &&
+            positions.map((item) => (
+              <div key={item.name}>
                 <input
                   type="radio"
                   {...register('position_id')}
-                  value={index + 1}
+                  value={item.id}
                 />
-                <label>{item}</label>
+                <label>{item.name}</label>
               </div>
             ))}
-          {/* <div>
-            <input type="radio" {...register('position_id')} value="1" />
-            <label>Frontend developer</label>
-          </div>
-          <div>
-            <input type="radio" {...register('position_id')} value="2" />
-            <label> Backend developer</label>
-          </div>
-          <div>
-            <input type="radio" {...register('position_id')} value="3" />
-            <label>Designer</label>
-          </div>
-          <div>
-            <input type="radio" {...register('position_id')} value="4" />
-            <label>QA</label>
-          </div> */}
+
           {errors.position_id && <span>{errors.position_id.message}</span>}
         </div>
 
         {/* <input type="file" {...register('photo')} />
         {errors.photo && <span>{errors.photo.message}</span>} */}
         {/* ---- - ---- */}
-        <input type="file" id="file" className={styles.fileInput} />
+        <input
+          type="file"
+          id="file"
+          className={styles.fileInput}
+          {...register('photo')}
+        />
         <label htmlFor="file" className={styles.fileLabel}>
           Upload your photo
         </label>
 
-        <Button title="Sign up" type="submit" disabled={true} />
+        <Button title="Sign up" type="submit" disabled={!true} />
       </form>
     </section>
   );
