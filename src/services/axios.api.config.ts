@@ -28,11 +28,11 @@ const axiosPrivate = axios.create({
   withCredentials: true,
 });
 
-const receiveToken = async () => {
-  const token = await getToken('/token');
-  console.log(' -- token in axios.config = ', token);
-  return (token?.success ? token.token : false);
-};
+// const receiveToken = async () => {
+//   const token = await getToken('/token');
+//   console.log(' -- token in axios.config = ', token);
+//   return (token?.success ? token.token : false);
+// };
 
 const privateInterceptor = (config: any) => {
   // const token = receiveToken();
