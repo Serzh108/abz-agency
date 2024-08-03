@@ -32,3 +32,28 @@ export interface IUsers {
   "links": ILinks;
   "users": IUser[];
 }
+
+export interface IPosinion {
+  "id": number;
+  "name": string;
+}
+
+export interface IPosinions {
+  "success": boolean;
+  "positions": IPosinion[];
+}
+
+export interface INewUser {
+  "success": boolean;
+  "user_id": number;
+  "message": string;
+}
+
+export type postRequestForm = {
+  name: string;
+  email: string;
+  phone: string;
+  position_id: number;
+  // photo: File[] | [];
+  photo: FileList | [];
+};

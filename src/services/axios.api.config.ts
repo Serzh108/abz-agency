@@ -1,12 +1,13 @@
 import axios from 'axios';
-// import { BASE_URL } from '../constants';
+import { getToken } from './getData';
+import { BASE_URL } from '../constants';
 // import { refresh } from './auth';
 
 // const BASE_URL = process.env.REACT_APP_BASE_URL_API;
-const BASE_URL = 'https://frontend-test-assignment-api.abz.agency/api/v1';
+// const BASE_URL = 'https://frontend-test-assignment-api.abz.agency/api/v1';
 // console.log('BASE_URL: ', BASE_URL);
 
-export const axiosPublic = axios.create({
+const axiosPublic = axios.create({
   baseURL: BASE_URL,
   headers: {
     'Content-Type': 'application/json',
@@ -15,14 +16,30 @@ export const axiosPublic = axios.create({
   withCredentials: false,
 });
 
-export const axiosPrivate = axios.create({
+const axiosPrivate = axios.create({
   baseURL: BASE_URL,
   headers: {
-    'Content-Type': 'application/json',
+    'Content-Type': 'multipart/form-data',
   },
   withCredentials: true,
 });
 
+const receiveToken = async () => {
+  const token = await getToken('/token');
+  console.log(' -- token in axios.config = ', token);
+  return (token?.success ? token.token : false);
+};
+
+const privateInterceptor = (config: any) => {
+  const token = receiveToken();
+  if (!token) return config
+  config.headers.authorization = `Bearer ${token}`
+  return config
+};
+
+axiosPrivate.interceptors.request.use(privateInterceptor);
+
+export { axiosPublic, axiosPrivate };
 
 // axiosPublic.interceptors.response.use(
 //   response => response,
