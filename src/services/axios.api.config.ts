@@ -1,11 +1,15 @@
 import axios from 'axios';
 import { getToken } from './getData';
 import { BASE_URL } from '../constants';
+import { useTokenStore } from '../store/store';
 // import { refresh } from './auth';
 
 // const BASE_URL = process.env.REACT_APP_BASE_URL_API;
 // const BASE_URL = 'https://frontend-test-assignment-api.abz.agency/api/v1';
 // console.log('BASE_URL: ', BASE_URL);
+
+// const token = useTokenStore((state) => state.token);
+// const token = '';
 
 const axiosPublic = axios.create({
   baseURL: BASE_URL,
@@ -31,15 +35,19 @@ const receiveToken = async () => {
 };
 
 const privateInterceptor = (config: any) => {
-  const token = receiveToken();
-  if (!token) return config
-  config.headers.authorization = `Bearer ${token}`
+  // const token = receiveToken();
+  const token = useTokenStore((state) => state.token);
+  // if (!token) return config
+  if (token) { config.headers.Authorization = `Bearer ${token}` }
   return config
 };
 
 axiosPrivate.interceptors.request.use(privateInterceptor);
 
-export { axiosPublic, axiosPrivate };
+export {
+  axiosPublic,
+  axiosPrivate
+};
 
 // axiosPublic.interceptors.response.use(
 //   response => response,

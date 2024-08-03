@@ -21,7 +21,8 @@
     "react-scripts": "5.0.1",
     "react-tooltip": "^5.27.1",
     "typescript": "^5.5.3",
-    "yup": "^1.4.0"
+    "yup": "^1.4.0",
+    "zustand": "^4.5.4"
   },
   "scripts": {
     "dev": "react-scripts start",
