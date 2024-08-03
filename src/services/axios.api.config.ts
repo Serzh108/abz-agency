@@ -1,7 +1,7 @@
 import axios from 'axios';
-// import { getToken } from './getData';
+import { getToken } from './getData';
 import { BASE_URL } from '../constants';
-import { useTokenStore } from '../store/store';
+// import { useTokenStore } from '../store/store';
 // import { refresh } from './auth';
 
 // const BASE_URL = process.env.REACT_APP_BASE_URL_API;
@@ -24,21 +24,24 @@ const axiosPrivate = axios.create({
   baseURL: BASE_URL,
   headers: {
     'Content-Type': 'multipart/form-data',
+    // 'Authorization': `Bearer ${token}`
   },
   withCredentials: true,
 });
 
-// const receiveToken = async () => {
-//   const token = await getToken('/token');
-//   console.log(' -- token in axios.config = ', token);
-//   return (token?.success ? token.token : false);
-// };
+const receiveToken = async () => {
+  const token = await getToken('/token');
+  console.log(' -- token in axios.config = ', token);
+  return (token?.success ? token.token : false);
+};
 
-const privateInterceptor = (config: any) => {
-  // const token = receiveToken();
-  const token = useTokenStore((state) => state.token);
+const privateInterceptor = async (config: any) => {
+  const token = await receiveToken();
+  // const token = useTokenStore((state) => state.token);
+  console.log(' -- token in axios.config = ', token);
   // if (!token) return config
   if (token) { config.headers.Authorization = `Bearer ${token}` }
+  console.log(' -- config in axios.config = ', config);
   return config
 };
 
