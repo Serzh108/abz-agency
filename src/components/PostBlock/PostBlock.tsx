@@ -44,8 +44,13 @@ const PostBlock: React.FC = () => {
     const endpoint = `/users`;
     const newUser = await createUser(endpoint, data);
     console.log(' -- newUser in func -> ', newUser);
-    newUser?.success && setNewUser(newUser);
+    if (newUser?.success) {
+      setNewUser(newUser);
+      reset();
+    }
   };
+
+  console.log(' -- newUser -> ', newUser);
 
   const onSubmitForm: SubmitHandler<postRequestForm> = (data) => {
     console.log('Form submitted:', data);
