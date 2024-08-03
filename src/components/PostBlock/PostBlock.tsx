@@ -25,9 +25,7 @@ const PostBlock: React.FC = () => {
     },
   });
 
-  // --- - ---
   const watchPhoto = watch('photo'); // Watch the photo field
-  // --- /- ---
 
   const [positions, setPositions] = useState<IPosinion[]>([]);
   useEffect(() => {
@@ -65,9 +63,6 @@ const PostBlock: React.FC = () => {
     // for (const pair of formData.entries()) {
     //   console.log(`${pair[0]}: ${pair[1]}`);
     // }
-    // const newUser = await newUser('users', data);
-    // const newUser = createUser('/users', data);
-    // console.log(' -- newUser -> ', newUser);
     createNewUser(data);
   };
 
@@ -97,7 +92,6 @@ const PostBlock: React.FC = () => {
         </div>
 
         <div>
-          {/* --- - --- */}
           <p>Select your position:</p>
           {positions &&
             positions.length > 0 &&
@@ -116,9 +110,6 @@ const PostBlock: React.FC = () => {
           {errors.position_id && <span>{errors.position_id.message}</span>}
         </div>
 
-        {/* <input type="file" {...register('photo')} />
-        {errors.photo && <span>{errors.photo.message}</span>} */}
-        {/* ---- - ---- */}
         <input
           type="file"
           id="file"

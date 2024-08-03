@@ -68,9 +68,6 @@ $border-color: rgba(208, 207, 207, 1);
     }
 
     & input[type='radio'] {
-      // width: 20px;
-      // height: 20px;
-      // margin: 0 12px 0 0;
       display: none;
 
       & + label {
@@ -122,10 +119,6 @@ $border-color: rgba(208, 207, 207, 1);
   margin-bottom: 50px;
   padding: 14px 16px;
   padding-left: 99px;
-  // font-size: 16px;
-  // font-weight: 400;
-  // line-height: 26px;
-  // color: var(--color-text-second);
   @include generalText($textColor: var(--color-text-second));
   background-color: var(--color-bg-main);
   border: 1px solid $border-color;

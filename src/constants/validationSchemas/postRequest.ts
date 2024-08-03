@@ -43,7 +43,6 @@ const REGEXP = {
   },
 };
 
-// export const postRequestSchema = yup.object().shape({
 export const postRequestSchema: yup.ObjectSchema<postRequestForm> = yup.object({
   name: yup
     .string()
