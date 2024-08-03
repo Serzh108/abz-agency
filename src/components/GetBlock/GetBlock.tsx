@@ -2,7 +2,10 @@ import React, { useEffect, useState } from 'react';
 import styles from './GetBlock.module.scss';
 import Card from '../Card/Card';
 import Button from '../Button/Button';
-import { getToken, getUsers } from '../../services/getData';
+import {
+  // getToken,
+  getUsers,
+} from '../../services/getData';
 import { useTokenStore } from '../../store/store';
 import {
   // IToken,
@@ -20,13 +23,14 @@ function GetBlock() {
   const [lastPage, setLastPage] = useState<number>(1);
 
   useEffect(() => {
-    const receiveToken = async () => {
-      const token = await getToken('/token');
-      // console.log(' -- token = ', token);
-      token?.success && setToken(token.token);
-    };
+    // const receiveToken = async () => {
+    //   const token = await getToken('/token');
+    //   // console.log(' -- token = ', token);
+    //   token?.success && setToken(token.token);
+    // };
 
-    receiveToken();
+    // receiveToken();
+    setToken();
   }, []);
 
   useEffect(() => {

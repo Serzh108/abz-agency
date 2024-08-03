@@ -32,7 +32,7 @@ const PostBlock: React.FC = () => {
     const receivePositions = async () => {
       const endpoint = `/positions`;
       const positions = await getPositions(endpoint);
-      console.log(' -- positions -> ', positions);
+      // console.log(' -- positions -> ', positions);
       positions?.success && setPositions(positions.positions);
     };
     receivePositions();
