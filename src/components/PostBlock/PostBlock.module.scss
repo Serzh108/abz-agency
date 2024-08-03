@@ -68,16 +68,51 @@ $border-color: rgba(208, 207, 207, 1);
     }
 
     & input[type='radio'] {
-      width: 20px;
-      height: 20px;
-      margin: 0 12px 0 0;
-      // accent-color: #00bdd3;
+      // width: 20px;
+      // height: 20px;
+      // margin: 0 12px 0 0;
+      display: none;
+
+      & + label {
+        position: relative;
+        display: inline-block;
+        padding-left: 32px;
+      }
+
+      & + label::before {
+        content: '';
+        display: inline-block;
+        position: absolute;
+        top: 3px;
+        left: 0;
+        width: 20px;
+        height: 20px;
+        border: 1px solid rgba(208, 207, 207, 1);
+        border-radius: 50%;
+      }
+      &:checked + label::before {
+        border-color: rgba(0, 189, 211, 1);
+      }
+
+      &:checked + label::after {
+        content: '';
+        display: inline-block;
+        position: absolute;
+        top: 8px;
+        left: 5px;
+        width: 10px;
+        height: 10px;
+        background-color: rgba(0, 189, 211, 1);
+        border-radius: 50%;
+      }
     }
   }
 }
 
 .fileInput {
-  display: none;
+  // display: none;
+  position: relative;
+  top: -60px;
 }
 
 .fileLabel {

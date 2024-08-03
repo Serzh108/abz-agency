@@ -1,20 +1,18 @@
 import { AxiosResponse } from 'axios';
 import {
-  // axiosPrivate,
+  axiosPrivate,
   axiosPublic
 } from './axios.api.config';
-import { IPosinions, IToken, IUsers } from '../types';
+import { INewUser, IPosinions, IToken, IUsers, postRequestForm } from '../types';
 
 type T =
   | IToken
   | undefined;
 
-// export const getToken = async <A>(endpoint: string): Promise<A> => {
 
 export const getToken = async (endpoint: string): Promise<T> => {
   try {
     const { data }: AxiosResponse<T> = await axiosPublic.get(endpoint);
-    // const { data }: AxiosResponse<A> = await axiosPublic.get('/token');
     // console.log(' --- data - > ', data);
     return data;
   } catch (error) {
@@ -31,7 +29,7 @@ export const getUsers = async (endpoint: string): Promise<U> => {
   try {
     // const { users }: AxiosResponse<U> = await axiosPrivate.get(endpoint);
     const { data }: AxiosResponse<U> = await axiosPublic.get(endpoint);
-    console.log(' --- users data - > ', data);
+    // console.log(' --- users data - > ', data);
     return data;
   } catch (error) {
     console.log(error);
@@ -45,9 +43,24 @@ type P =
 
 export const getPositions = async (endpoint: string): Promise<P> => {
   try {
-    // const { users }: AxiosResponse<U> = await axiosPrivate.get(endpoint);
     const { data }: AxiosResponse<P> = await axiosPublic.get(endpoint);
-    console.log(' --- positions data - > ', data);
+    // console.log(' --- positions data - > ', data);
+    return data;
+  } catch (error) {
+    console.log(error);
+    // return error;
+  }
+};
+
+type NU =
+  | INewUser
+  | undefined;
+
+export const createUser = async (endpoint: string, formData: postRequestForm): Promise<NU> => {
+  try {
+    console.log(' ----- newUser formData - > ', formData);
+    const { data }: AxiosResponse<NU> = await axiosPrivate.post(endpoint, formData);
+    console.log(' --- newUser data - > ', data);
     return data;
   } catch (error) {
     console.log(error);

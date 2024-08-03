@@ -1,4 +1,5 @@
 import * as yup from 'yup';
+import { postRequestForm } from '../../types';
 
 const REGEXP = {
   name: {
@@ -42,7 +43,8 @@ const REGEXP = {
   },
 };
 
-export const postRequestSchema = yup.object().shape({
+// export const postRequestSchema = yup.object().shape({
+export const postRequestSchema: yup.ObjectSchema<postRequestForm> = yup.object({
   name: yup
     .string()
     .required(REGEXP.name.mess.required)
@@ -52,6 +54,7 @@ export const postRequestSchema = yup.object().shape({
     .string()
     .required(REGEXP.email.mess.required)
     .email(REGEXP.email.mess.format)
+    .max(100, REGEXP.name.mess.moreSymbols)
     .matches(REGEXP.email.reg, REGEXP.email.mess.mismatch),
 
   phone: yup
@@ -60,29 +63,22 @@ export const postRequestSchema = yup.object().shape({
     .matches(REGEXP.phone.reg, REGEXP.phone.mess.mismatch),
   position_id: yup
     .number()
-    .positive()
     .required(REGEXP.position_id.mess.required)
     .min(1, REGEXP.position_id.mess.min),
   photo: yup
-    .mixed()
+    .mixed()  // 
+    // .mixed<File[]>()
+    // .mixed<FileList>()
     .required(REGEXP.photo.mess.required)
-    .test("required", "You need to provide a file", (file) => {
-      // return file && file.size <-- u can use this if you don't want to allow empty files to be uploaded;
-      if (file && file as File) return true;
-      return false;
+    .test('fileSize', 'The file is too large', (value) => {
+      // const fileList = value as File[];
+      const fileList = value as FileList;
+      return fileList && fileList[0] && fileList[0].size <= 5 * 1024 * 1024; // 5MB
+    })
+    .test('fileType', 'Unsupported file format', (value) => {
+      // const fileList = value as File[];
+      const fileList = value as FileList;
+      return fileList && fileList[0] && ['image/jpeg', 'image/jpg'].includes(fileList[0].type);
+
     }),
-  // .test("fileSize", "The file is too large", (file) => {
-  //   //if u want to allow only certain file sizes
-  //   return file && file?.size <= 5000000;
-  // })
-  // --- - ---
-  // .test('required', 'You need to provide a photo', (file) => {
-  // return file && file?.length > 0;
-  // }),
-  // .test('fileSize', 'The file is too large', (file) => {
-  //   return file && file[0] && file[0].size <= 5000000; // 5MB
-  // })
-  // .test('fileType', 'Unsupported file format', (file) => {
-  //   return file && file[0] && ['image/jpeg', 'image/png'].includes(file[0].type);
-  // }),
-});
+}) as yup.ObjectSchema<postRequestForm>;

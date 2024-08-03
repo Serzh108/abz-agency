@@ -3,21 +3,16 @@ import styles from './PostBlock.module.scss';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { postRequestSchema } from '../../constants/validationSchemas/postRequest';
-import { postRequestForm } from '../../constants';
 import Button from '../Button/Button';
-import { getPositions } from '../../services/getData';
-import { IPosinion } from '../../types';
-// import Radio from '@mui/material/Radio';
-// import RadioGroup from '@mui/material/RadioGroup';
-// import FormControlLabel from '@mui/material/FormControlLabel';
-// import FormControl from '@mui/material/FormControl';
-// import FormLabel from '@mui/material/FormLabel';
+import { createUser, getPositions } from '../../services/getData';
+import { INewUser, IPosinion, postRequestForm } from '../../types';
 
 const PostBlock: React.FC = () => {
   const {
     register,
     handleSubmit,
     reset,
+    watch,
     formState: { errors },
   } = useForm<postRequestForm>({
     resolver: yupResolver(postRequestSchema),
@@ -26,9 +21,13 @@ const PostBlock: React.FC = () => {
       email: '',
       phone: '',
       position_id: 1,
-      photo: undefined,
+      photo: [],
     },
   });
+
+  // --- - ---
+  const watchPhoto = watch('photo'); // Watch the photo field
+  // --- /- ---
 
   const [positions, setPositions] = useState<IPosinion[]>([]);
   useEffect(() => {
@@ -41,9 +40,35 @@ const PostBlock: React.FC = () => {
     receivePositions();
   }, []);
 
+  const [newUser, setNewUser] = useState<INewUser>();
+
+  const createNewUser = async (data: postRequestForm) => {
+    const endpoint = `/users`;
+    const newUser = await createUser(endpoint, data);
+    console.log(' -- newUser in func -> ', newUser);
+    newUser?.success && setNewUser(newUser);
+  };
+
   const onSubmitForm: SubmitHandler<postRequestForm> = (data) => {
     console.log('Form submitted:', data);
-    reset(); // Reset form values to their default state
+    // reset(); // Reset form values to their default state
+    // reset({ name: '', email: '', phone: '', position_id: 0, photo: [] });
+    // const formData = new FormData();
+    // formData.append('name', data.name);
+    // formData.append('email', data.email);
+    // formData.append('phone', data.phone);
+    // formData.append('position_id', data.position_id.toString());
+    // if (data.photo.length > 0) {
+    //   formData.append('photo', data.photo[0]);
+    // }
+    // Logging the FormData entries
+    // for (const pair of formData.entries()) {
+    //   console.log(`${pair[0]}: ${pair[1]}`);
+    // }
+    // const newUser = await newUser('users', data);
+    // const newUser = createUser('/users', data);
+    // console.log(' -- newUser -> ', newUser);
+    createNewUser(data);
   };
 
   return (
@@ -76,14 +101,15 @@ const PostBlock: React.FC = () => {
           <p>Select your position:</p>
           {positions &&
             positions.length > 0 &&
-            positions.map((item) => (
+            positions.map((item, index) => (
               <div key={item.name}>
                 <input
+                  id={`radio${index}`}
                   type="radio"
                   {...register('position_id')}
                   value={item.id}
                 />
-                <label>{item.name}</label>
+                <label htmlFor={`radio${index}`}>{item.name}</label>
               </div>
             ))}
 
@@ -100,8 +126,14 @@ const PostBlock: React.FC = () => {
           {...register('photo')}
         />
         <label htmlFor="file" className={styles.fileLabel}>
-          Upload your photo
+          {/* Upload your photo */}
+          {watchPhoto && watchPhoto.length > 0
+            ? `${watchPhoto[0].name}`
+            : `Upload your photo`}
         </label>
+        {errors.photo && (
+          <span className={styles.errorMessage}>{errors.photo.message}</span>
+        )}
 
         <Button title="Sign up" type="submit" disabled={!true} />
       </form>
