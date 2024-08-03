@@ -2,14 +2,19 @@ import React, { useEffect, useState } from 'react';
 import styles from './GetBlock.module.scss';
 import Card from '../Card/Card';
 import Button from '../Button/Button';
+import { getToken, getUsers } from '../../services/getData';
+import { useTokenStore } from '../../store/store';
 import {
   // IToken,
   IUser,
 } from '../../types';
-import { getToken, getUsers } from '../../services/getData';
 
 function GetBlock() {
-  const [token, setToken] = useState<string>('');
+  // --- - ---
+  const token = useTokenStore((state) => state.token);
+  const setToken = useTokenStore((state) => state.setToken);
+  // --- /- ---
+  // const [token, setToken] = useState<string>('');
   const [users, setUsers] = useState<IUser[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [lastPage, setLastPage] = useState<number>(1);
@@ -46,7 +51,7 @@ function GetBlock() {
   return (
     <section className={styles.wrapper}>
       <h2>Working with GET request</h2>
-      {/* <p className={styles.ellipsis}> {token ? token : 'waiting...'} </p> */}
+      <p className={styles.ellipsis}> {token ? token : 'waiting...'} </p>
       <ul>
         {users &&
           users.length > 0 &&
